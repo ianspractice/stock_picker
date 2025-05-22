@@ -16,6 +16,8 @@ result = Hash.new{0}
   best_return = result.keys.max
   #put buy_day and sell_day indexes
   p "Buying on #{result[best_return][0]} and selling on #{result[best_return][1]} will yield the highest return of $#{best_return}."
+  #return array of index of best days
+  result[best_return]
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
@@ -23,3 +25,12 @@ stock_picker([17,3,6,9,15,8,6,1,10])
 stock_picker([1, 2, 3, 4])
 
 stock_picker([5, 4, 3, 2, 1, 0])
+
+def better_stock_picker(arr_stocks)
+  #find the max number not including the first day
+  int_sell_day = arr_stocks.drop(1).max()
+  #find the min number in the range from the first day up to the index of the sell_day
+  int_buy_day = arr_stocks[0..arr_stocks.find_index(int_sell_day)].min()
+  p [arr_stocks.find_index(int_buy_day), arr_stocks.find_index(int_sell_day)]
+end
+
